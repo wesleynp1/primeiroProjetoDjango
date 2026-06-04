@@ -10,8 +10,10 @@
                 <th>Produto</th>
                 <th>Quantidade</th>
                 <th>Total</th>
+            {% if request.user.is_authenticated %}
                 <th>Delete</th>
                 <th>Editar</th>
+            {% endif %}
             </tr>
         </thead>
     <tbody>
@@ -21,14 +23,17 @@
             <td>{{ venda.produto.nome }}</td>
             <td>{{ venda.quantidade }}</td>
             <td>{{ venda.get_total }}</td>
+        {% if request.user.is_authenticated %}
             <td> <a href="{% url "vendas:delete_form" venda.id %}" class="btn btn-danger"> EXCLUIR</a> </td>
             <td> <a href="{% url "vendas:edit_form" venda.id %}"   class="btn btn-primary"> EDITAR</a> </td>
+        {% endif %}
         </tr>
     {% endfor %}
-
-     <tr>
-        <td colspan="6"> <a href={% url "vendas:add_form" %}>CADASTRAR NOVA VENDA</a> </td>
-     </tr>
+    {% if request.user.is_authenticated %}
+         <tr>
+            <td colspan="6"> <a href={% url "vendas:add_form" %}>CADASTRAR NOVA VENDA</a> </td>
+         </tr>
+    {% endif %}
 
     </tbody>
     </table>

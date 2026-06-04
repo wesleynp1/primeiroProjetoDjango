@@ -7,7 +7,7 @@
     <form class="d-flex align-items-center flex-column" id="formLogin" action="{% url 'login' %}" method="POST">
         {% csrf_token %}
 
-        <img src="{% static 'loja/img/usuario.png' %}" alt="">
+        <img src="{% static 'loja/img/usuario.png' %}" alt="" class="w-75">
 
         <div class="mb-3">
             <label for="username">Nome</label>
