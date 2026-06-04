@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'loja.apps.LojaConfig',
     'vendas.apps.VendasConfig',
     'clientes.apps.ClientesConfig',
