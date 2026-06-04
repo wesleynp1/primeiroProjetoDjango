@@ -2,3 +2,4 @@ Django==3.2.12
 python-dotenv==1.2.2
 daphne==4.2.2
 psycopg2-binary
+whitenoise
