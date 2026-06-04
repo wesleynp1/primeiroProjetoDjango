@@ -38,3 +38,13 @@ pip install python-dotenv
 
 #quando realizar testes e receber um acess denied use
 ALTER USER your_django_user CREATEDB;
+
+#DEPLOY
+#primeiro instale o pacote daphne
+python -m pip install daphne
+
+#para rodar de dispositivos remotos
+daphne -b 0.0.0.0 -p 8000  MeuSiteDjango.asgi:application
+
+#funcionará porém sem arquivos estáticos, para isso use o whitenoise
+python -m pip install whitenoise

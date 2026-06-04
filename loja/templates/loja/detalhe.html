@@ -9,4 +9,6 @@
        <p class="center"> É um excelente {{ produto.nome }}, custando apenas {{ produto.preco_formatado }}</p>
     </div>
 
+    <a href="{% url 'loja:index' %}" class="btn btn-secondary"><< Voltar</a>
+
 {% endblock %}
