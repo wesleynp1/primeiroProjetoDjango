@@ -49,5 +49,9 @@ daphne -b 0.0.0.0 -p 8000  MeuSiteDjango.asgi:application
 #funcionará porém sem arquivos estáticos, para isso use o whitenoise
 python -m pip install whitenoise
 
+#rode o seguinte comando para coletar os arquivos estaticos em uma unica pasta que será servida pelo whitenoise
+python manage.py collectstatic --clear --noinput
+
+
 #criar o requirements.txt
 pip freeze > requirements.txt
