@@ -88,11 +88,11 @@ WSGI_APPLICATION = 'MeuSiteDjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'loja_django',
-        'USER': 'django_app',
+        'NAME': os.getenv('DJANGO_DATABASE_NAME'),
+        'USER': os.getenv('DJANGO_DATABASE_USER'),
         'PASSWORD': os.getenv('DJANGO_DATABASE_PASSWORD'),
-        'HOST': '',
-        'PORT': '5432',
+        'HOST': os.getenv('DJANGO_DATABASE_HOST'),
+        'PORT': os.getenv('DJANGO_DATABASE_PORT'),
         'TEST':{
             'NAME': 'test_db',
         }

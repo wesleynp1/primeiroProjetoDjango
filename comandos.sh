@@ -48,3 +48,6 @@ daphne -b 0.0.0.0 -p 8000  MeuSiteDjango.asgi:application
 
 #funcionará porém sem arquivos estáticos, para isso use o whitenoise
 python -m pip install whitenoise
+
+#criar o requirements.txt
+pip freeze > requirements.txt
