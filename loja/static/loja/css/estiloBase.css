@@ -4,6 +4,13 @@
     --bs-body-color: rgb(255, 255, 255);
     --bs-secondary-color: rgb(200,200,200)
 }
+
+body{
+    background-color: rgb(33 33 33);
+    color: white;
+    min-height: 100vh;
+}
+
 th,td{
     text-align: center;
 }

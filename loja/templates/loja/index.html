@@ -9,8 +9,10 @@
                 <tr>
                     <th>NOME</th>
                     <th>PREÇO</th>
-                    <th>EXCLUIR</th>
-                    <th>EDITAR</th>
+                    {% if request.user.is_authenticated %}
+                        <th>EXCLUIR</th>
+                        <th>EDITAR</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -18,13 +20,17 @@
                     <tr>
                         <td> <a href="{% url 'loja:detalhe' produto.id %}"> {{ produto.nome }}</a> </td>
                         <td>{{ produto.preco_formatado }}</td>
-                        <td> <a href="{% url 'loja:delete_form' produto.id %}" class="btn btn-danger"> EXCLUIR</a> </td>
-                        <td> <a href="{% url 'loja:edit_form' produto.id %}" class="btn btn-primary"> EDITAR</a> </td>
+                        {% if request.user.is_authenticated %}
+                            <td> <a href="{% url 'loja:delete_form' produto.id %}" class="btn btn-danger"> EXCLUIR</a> </td>
+                            <td> <a href="{% url 'loja:edit_form' produto.id %}" class="btn btn-primary"> EDITAR</a> </td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
-                <tr>
-                    <td colspan="4"> <a href="{% url 'loja:add' %}">CADASTRAR NOVO PRODUTO</a> </td>
-                </tr>
+                {% if request.user.is_authenticated %}
+                    <tr>
+                        <td colspan="4"> <a href="{% url 'loja:add' %}">CADASTRAR NOVO PRODUTO</a> </td>
+                    </tr>
+                {% endif %}
             </tbody>
         </table>
     </div>
@@ -37,8 +43,10 @@
                 <th>NOME</th>
                 <th>CPF</th>
                 <th>TELEFONE</th>
-                <th>EXCLUIR</th>
-                <th>EDITAR</th>
+                {% if request.user.is_authenticated %}
+                    <th>EXCLUIR</th>
+                    <th>EDITAR</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -47,13 +55,18 @@
                     <td>{{ cliente.nome }}</td>
                     <td>{{ cliente.cpf }}</td>
                     <td> <a href="https://wa.me/55{{ cliente.telefone }}" target="_blank"> {{ cliente.telefone }}</a> </td>
-                    <td> <a href="{% url 'clientes:delete_form' cliente.cpf %}" class="btn btn-danger"> EXCLUIR</a> </td>
-                    <td> <a href="{% url 'clientes:edit_form' cliente.cpf %}" class="btn btn-primary"> EDITAR</a> </td>
+
+                    {% if request.user.is_authenticated %}
+                        <td> <a href="{% url 'clientes:delete_form' cliente.cpf %}" class="btn btn-danger"> EXCLUIR</a> </td>
+                        <td> <a href="{% url 'clientes:edit_form' cliente.cpf %}" class="btn btn-primary"> EDITAR</a> </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
+            {% if request.user.is_authenticated %}
                 <tr>
                     <td colspan="5"> <a href="{% url 'clientes:add_form' %}">CADASTRAR NOVO CLIENTE</a> </td>
                 </tr>
+            {% endif %}
             </tbody>
         </table>
     </div>

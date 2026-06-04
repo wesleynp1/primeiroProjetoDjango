@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('loja/', include("loja.urls")),#add para incluir os URL's da aplicação "produto"
     path("", views.index, name="index"),
+    path('login/', views.Logar, name="login"),
     path("vendas/",include("vendas.urls")),
     path("clientes/", include("clientes.urls")),
 ]+debug_toolbar_urls()

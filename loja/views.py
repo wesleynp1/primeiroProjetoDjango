@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
-
 #from django.template import loader
 #from django.shortcuts import render
 #from django.http import HttpResponse
+
 from django.http import Http404
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from loja.models import Produto
 from clientes.models import Cliente
@@ -18,15 +19,17 @@ def index(request):
 
     return render(request, 'loja/index.html', {"produtos": produtos, "clientes": clientes})
 
+@login_required
 def add(request):
-    if(request.method == 'GET'):
+    if request.method == 'GET':
         return render(request, 'loja/add.html')
-    elif (request.method == 'POST'):
+    elif request.method == 'POST':
         Produto.objects.create(nome=request.POST["nome"], preco=request.POST["preco"])
         return redirect("loja:index")
     else:
         return redirect("loja:index")
 
+@login_required
 def delete_form(request, produto_id):
     produto_para_deletar = Produto.objects.filter(id=produto_id).first()
 
@@ -34,6 +37,8 @@ def delete_form(request, produto_id):
         raise Http404
     else:
         return render(request, "loja/delete.html", {"produto": produto_para_deletar})
+
+@login_required
 def delete(request, produto_id):
     produto_para_deletar = Produto.objects.filter(id=produto_id).first()
 
@@ -43,9 +48,12 @@ def delete(request, produto_id):
         produto_para_deletar.delete()
         return redirect("loja:index")
 
+@login_required
 def edit_form(request, produto_id):
     produto = Produto.objects.filter(id=produto_id).first()
     return render(request, "loja/edit.html", {"produto": produto})
+
+@login_required
 def edit(request, produto_id):
     produto_para_editar = Produto.objects.filter(id=request.POST["id"]).first()
 

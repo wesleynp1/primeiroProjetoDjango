@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <form class="d-flex align-items-center flex-column" id="formLogin" action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+
+        <img src="{% static 'loja/img/usuario.png' %}" alt="">
+
+        <div class="mb-3">
+            <label for="username">Nome</label>
+            <input type="text" name="username" id="username" placeholder="insira seu nome aqui..." class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="inputPassword">Senha</label>
+            <input type="password" name="password" id="inputPassword" placeholder="insira sua senha aqui..." class="form-control"  required>
+        </div>
+
+        <input type="submit" value="ENTRAR" class="btn btn-primary">
+
+        <p>
+            <input type="checkbox" name="remember" id="inputRemember" >  Entrar automaticamente
+        </p>
+    </form>
+{% endblock %}
